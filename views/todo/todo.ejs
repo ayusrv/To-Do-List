@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body style="background: #ecf0f3;">
+    <nav style="background-color: #ecf0f3;" class="navbar sticky-top mx-0  navbar-expand ">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Todo List App</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="/todo">Todo</a>
+                </div>
+                <div class="navbar-nav ms-auto">
+                    <% if(!currentUser) {%>
+                        <a class="nav-link" href="/signin">Sign In</a>
+                        <a class="nav-link" href="/signup">Sign Up</a>
+                        <% } else {%>
+                            <a class="nav-link mx-4 text-black-50 btn "> <i class="btn fa fa-user mx-2 text-black-50" id="infobox" aria-hidden="true"></i>'<%=username%>'</a>
+                            <a class="nav-link" href="/signout">Sign Out</a>
+                            <% } %>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <link rel="stylesheet" href="/static/css/style2.css" type="text/css">
+    <div>
+    <div class="contains " style="background:#ecf0f3  ; border: none;">
+        <form action="/new" method="post" class="todoForm">
+            <input class="rounded" autofocus type="text" placeholder="Add your new todo" name="content"
+                class="form-control" required>
+            <button type="submit"><i class="fas fa-plus"></i></button>
+        </form>
+        
+            <div class="todoList" >
+                <% todoTasks.forEach(details=> { %>
+                    <div class="w-100 toast show shadow-none " style="border: non;" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <!-- Button trigger modal for editing todo - start -->
+                            <button type="button" class="icon fas fa-edit ms-2 mb-1" data-bs-toggle="modal"
+                                data-bs-target="#edit-todo-<%= details._id %>"></button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="edit-todo-<%= details._id %>" tabindex="1"
+                                aria-labelledby="edit-<%= details._id %>" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <center class="w-100">
+                                                <h3 class="modal-title" id="edit-<%= details._id %>">Edit</h3>
+                                            </center>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/edit/<%= details._id %>" method="POST">
+                                                <div class="d-grid gap-2">
+                                                    <input type="text" value="<%=details.content%>"
+                                                        class="w-100 form-control-lg" name="content" required>
+                                                    <!-- <hr/> -->
+                                                    <button class="w-100 btn btn-primary" type="submit">Confirm</button>
+                                                    <button type="button" class="w-100 btn btn-danger"
+                                                        data-bs-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Button trigger modal for editing todo - end -->
+                            <center class="w-100">Added on <%= details.date.toLocaleDateString() %>
+                            </center>
+                            <a href="/remove/<%= details._id %>" class="remove">
+                                <button type="button" class="icon fas fa-trash ms-2 mb-1" data-bs-dismiss="toast"
+                                    aria-label="Close">
+                                </button>
+                            </a>
+                        </div>
+                        <div class="toast-body shadow-none">
+                            <p>
+                                <center>
+                                    <%= details.content %>
+                                </center>
+                            </p>
+                        </div>
+                    </div>
+                    <p></p>
+                    <!-- <hr/> -->
+                    <% }) %>
+            </div>
+           
+        </div>
+    </div>
+    <div>
+        <% if (total_todos> 0) { %>
+            <div class="" style="height: 407px; margin-top:40px; float: right; padding-right:170px ;">
+               <h4> <span>You have <%= total_todos %> pending tasks</span> </h4>
+                <!-- Button trigger modal -->
+                <p></p>
+                <button type="button" class="btn btn-danger " style="margin-left: 95px; margin-top: 50px;" data-bs-toggle="modal" data-bs-target="#clear-all">
+                    Clear All
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="clear-all" tabindex="-1" aria-labelledby="clear-allLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="clear-allLabel">Warning: This will clear all the saved
+                                    todolist.</h5>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/removeall" method="post">
+                                    <div class="d-grid gap-2">
+                                        <button class="w-100 btn btn-danger" type="submit">Confirm</button>
+                                        <button type="button" class="w-100 btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+    </div>
+
+        <%- include('../layouts/footer')%>

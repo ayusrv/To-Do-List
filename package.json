@@ -1,0 +1,30 @@
+{
+    "name": "todoapp",
+    "version": "1.0.0",
+    "description": "A todo list website",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon index.js",
+        "f": "npx prettier --write --tab-width 4 .",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "connect-flash": "^0.1.1",
+        "cookie-parser": "^1.4.5",
+        "dotenv": "^10.0.0",
+        "ejs": "^3.1.6",
+        "express": "^4.17.1",
+        "express-session": "^1.17.2",
+        "mongoose": "^5.12.15",
+        "passport": "^0.4.1",
+        "passport-local": "^1.0.0",
+        "passport-local-mongoose": "^6.1.0",
+        "path": "^0.12.7"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15",
+        "prettier": "2.3.2"
+    }
+}

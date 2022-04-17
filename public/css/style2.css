@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    
+}
+
+::selection {
+    color: #fff5ff;
+    background: rgb(161, 40, 234);
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    min-width: 400px;
+    /* overflow: hidden; */
+    padding: 10px;
+    background: linear-gradient(to right, #68eacf 40%, #497BE8 100%);
+}
+
+.contains-height {
+    margin-top: 3%;
+}
+
+@media screen and (min-height: 800px) {
+    .contains-height {
+        margin-top: 8%;
+    }
+}
+
+@media screen and (min-height: 1000px) {
+    .contains-height {
+        margin-top: 10%;
+    }
+}
+
+@media screen and (min-height: 1500px) {
+    .contains-height {
+        margin-top: 15%;
+    }
+}
+
+@media screen and (min-height: 2000px) {
+    .contains-height {
+        margin-top: 20%;
+    }
+}
+
+.contains-width {
+    max-width: 95%;
+}
+
+@media screen and (min-width: 400px) {
+    .contains-width {
+        max-width: 90%;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .contains-width {
+        max-width: 70%;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .contains-width {
+        max-width: 60%;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .contains-width {
+        max-width: 50%;
+    }
+}
+
+.contains {
+    background: #fff;
+    padding: 20px;
+    /* border-radius: 10px; */
+    /* margin-left: auto; */
+    float: left;
+    height: 407px;
+    width: 43rem;
+    /* margin-right: 33rem; */
+    /* margin-bottom: 0; */
+    /* box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1); */
+}
+
+.contains header {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.contains .todoForm {
+    margin: 20px 0;
+    width: 100%;
+    display: flex;
+    height: 60px;
+}
+
+.todoForm input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    font-size: 17px;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+}
+
+.todoForm input:focus {
+    border-color: #8e49e8;
+}
+
+.todoForm button {
+    width: 50px;
+    height: 100%;
+    border: none;
+    color: #fff;
+    margin-left: 5px;
+    font-size: 21px;
+    outline: none;
+    background: #8e49e8;
+    cursor: pointer;
+    border-radius: 3px;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.todoForm button:hover {
+    background: #721ce3;
+}
+
+.todoForm button.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.todoList {
+    max-height: 257px;
+    overflow-y: auto;
+}
+
+.todoList li {
+    position: relative;
+    list-style: none;
+    height: 45px;
+    line-height: 45px;
+    margin-bottom: 8px;
+    background: #f2f2f2;
+    border-radius: 3px;
+    padding: 0 15px;
+    cursor: default;
+    overflow: hidden;
+}
+
+.todoList li .icon {
+    position: absolute;
+    right: -45px;
+    background: #e74c3c;
+    width: 45px;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all 0.2s ease;
+}
+
+.todoList li:hover .icon {
+    right: 0px;
+}
+
+.contains .footer {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer button.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.icon {
+    border: none;
+}
+
